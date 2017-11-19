@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE xsl:stylesheet PUBLIC "Unofficial XSLT 1.0 DTD" "http://www.w3.org/1999/11/xslt10.dtd">
+<!-- XSLT-ConvertPrimeInfra-reachabilityStatus.xml
+     Converts Prime Infrastructure's REST API Output for 
+     /webacs/api/v1/op/statisticsService/device/reachabilityStatus method from XML to an HTML output suitable for dashboarding
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="html" indent="yes"/>
+
+	<xsl:template match="/">
+		<html>
+			<body>
+				<table border="1" cellpadding="2" cellspacing="2" width="80%">
+					<tbody>
+						<xsl:for-each select="//childStatistic">
+							<tr>
+								<td>
+									<xsl:value-of select="statisticEntries/statisticEntry[attributeName='deviceName']/entryValue"/>
+								</td>
+								<td>
+									<xsl:value-of select="statisticEntries/statisticEntry[attributeName='deviceIp']/entryValue"/>
+								</td>
+								<td>
+									<xsl:value-of select="statisticEntries/statisticEntry[attributeName='reachability']/entryValue"/>
+								</td>
+							</tr>
+						</xsl:for-each>
+					</tbody>
+				</table>
+			</body>
+		</html>
+	</xsl:template>
+</xsl:stylesheet>
