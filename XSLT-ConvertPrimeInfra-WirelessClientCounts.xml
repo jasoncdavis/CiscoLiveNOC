@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- XSLT-ConvertPrimeInfra-WirelessClientCounts.xml -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="xml" indent="yes"/>
+	<xsl:template match="/">
+		<Document>
+			<xsl:apply-templates select="queryResponse/entity/clientCountsDTO"/>
+		</Document>
+	</xsl:template>
+	<xsl:template match="clientCountsDTO">
+		<Row>
+			<xmlid>
+				<xsl:value-of select="@id"/>
+			</xmlid>
+			<authCount>
+				<xsl:value-of select="authCount"/>
+			</authCount>
+			<dot11aAuthCount>
+				<xsl:value-of select="dot11aAuthCount"/>
+			</dot11aAuthCount>
+			<dot11acAuthCount>
+				<xsl:value-of select="dot11acAuthCount"/>
+			</dot11acAuthCount>
+			<dot11bAuthCount>
+				<xsl:value-of select="dot11bAuthCount"/>
+			</dot11bAuthCount>
+			<dot11gAuthCount>
+				<xsl:value-of select="dot11gAuthCount"/>
+			</dot11gAuthCount>
+			<dot11n2_4AuthCount>
+				<xsl:value-of select="dot11n2_4AuthCount"/>
+			</dot11n2_4AuthCount>
+			<dot11n5AuthCount>
+				<xsl:value-of select="dot11n5AuthCount"/>
+			</dot11n5AuthCount>
+			<key>
+				<xsl:value-of select="key"/>
+			</key>
+			<subkey>
+				<xsl:value-of select="subkey"/>
+			</subkey>
+			<type>
+				<xsl:value-of select="type"/>
+			</type>
+		</Row>
+	</xsl:template>
+</xsl:stylesheet>
