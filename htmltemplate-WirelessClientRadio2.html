@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<!-- htmltemplate-WirelessClientRadio2.html -->
+  <head>
+    <meta charset="utf-8">
+    
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta http-equiv="refresh" content="30">
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Wireless Client Radio Distribution</title>
+    <style type="text/css">
+	* {
+    box-sizing: border-box;
+  }
+
+  body{
+    background-color: #000000;
+    color: #ffffff;
+    font-family: Helvetica, Arial, Sans-Serif;
+    padding: 100px;
+    padding-bottom: 0;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 130px;
+    font-weight: normal;
+    padding: 0;
+    margin: 0 0 80px 0;
+  }
+
+	h2 {
+		font-weight: normal;
+		text-align: center;
+		font-size: 42px;
+		line-height: 1.3em;
+	}
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  td {
+    padding: 0 0 25px 0;
+  }
+
+  td.label {
+    width: 24%;
+    font-size: 45px;
+  }
+
+  td.percent {
+    width: 5%;
+    font-size: 32px;
+    text-align: right;
+  }
+
+  .bar {
+    width: 100%;
+    margin: 0;
+    padding: 20px 40px;
+    text-align: right;
+    font-size: 26px;
+  }
+  
+  .total-clients {
+    font-size: 45px;
+    margin-bottom: 25px;
+  }
+
+  .ac-80211 {
+    background-color: #003806;
+  }
+  .n5-80211 {
+    background-color: #005826;
+  }
+  .n2_4-80211 {
+    background-color: #00833B;
+  }
+  .g-80211 {
+    background-color: #238937;
+  }
+  .a-80211 {
+    background-color: #85BD3C;
+  }
+  .b-80211 {
+    background-color: #9DC435;
+  }
+  </style>
+  </head>
+  
+  <body>
+    <h1>Wireless Radio Distribution</h1>
+
+    <div class="total-clients">Total Wireless Clients: ###TOTALCLIENTCOUNT###</div>
+    <table>
+      <tr>
+        <td class="label">
+          802.11ac
+        </td>
+        <td>
+          <div class="bar ac-80211" style="width: ###11ACRATIO###%;">
+            <span>###11ACCLIENTCOUNT###</span>
+          </div>
+        </td>
+        <td class="percent">###11ACRATIO###%</td>
+      </tr>
+      <tr>
+        <td class="label">
+          802.11n5
+        </td>
+        <td>
+          <div class="bar n5-80211" style="width: ###11N5RATIO###%;">
+            <span>###11N5CLIENTCOUNT###</span>
+          </div>
+        </td>
+        <td class="percent">###11N5RATIO###%</td>
+      </tr>
+      <tr>
+        <td class="label">
+          802.11n2_4
+        </td>
+        <td>
+          <div class="bar n2_4-80211" style="width: ###11N24RATIO###%;">
+            <span>###11N24CLIENTCOUNT###</span>
+          </div>
+        </td>
+        <td class="percent">###11N24RATIO###%</td>
+      </tr>
+      <tr>
+        <td class="label">
+          802.11g
+        </td>
+        <td>
+          <div class="bar g-80211" style="width: ###11GRATIO###%;">
+            <span>###11GCLIENTCOUNT###</span>
+          </div>
+        </td>
+        <td class="percent">###11GRATIO###%</td>
+      </tr>
+      <tr>
+        <td class="label">
+          802.11a
+        </td>
+        <td>
+          <div class="bar a-80211" style="width: ###11ARATIO###%;">
+            <span>###11ACLIENTCOUNT###</span>
+          </div>
+        </td>
+        <td class="percent">###11ARATIO###%</td>
+      </tr>
+      <tr>
+        <td class="label">
+          802.11b
+        </td>
+        <td>
+          <div class="bar b-80211" style="width: ###11BRATIO###%;">
+            <span>###11BCLIENTCOUNT###</span>
+          </div>
+        </td>
+        <td class="percent">###11BRATIO###%</td>
+      </tr>
+    </table>
+</body>
+</html>
