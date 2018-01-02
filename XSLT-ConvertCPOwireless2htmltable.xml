@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- XSLT-ConvertCPOwireless2htmltable.xml -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:template match="/">
+		<xsl:for-each select="DocumentElement/Row">
+			<tr>
+				<td class="label">
+					<xsl:value-of select="key"/>
+				</td>
+				<td>
+					<table class="bar">
+						<tr>
+							<td class="ac-80211" style="width: 18%;">
+								<xsl:value-of select="dot11acAuthCount"/>
+							</td>
+							<td class="n5-80211" style="width: 18%;">
+								<xsl:value-of select="dot11n5AuthCount"/>
+							</td>
+							<td class="n2_4-80211" style="width: 18%;">
+								<xsl:value-of select="dot11n2_4AuthCount"/>
+							</td>
+							<td class="g-80211" style="width: 18%;">
+								<xsl:value-of select="dot11gAuthCount"/>
+							</td>
+							<td class="a-80211" style="width: 18%;">
+								<xsl:value-of select="dot11aAuthCount"/>
+							</td>
+							<td class="b-80211" style="width: 18%;">N.A.</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</xsl:for-each>
+	</xsl:template>
+</xsl:stylesheet>
