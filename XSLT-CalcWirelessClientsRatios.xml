@@ -12,21 +12,39 @@
 			<ClientsTotalSum>
 				<xsl:value-of select="$CLIENTSUM"/>
 			</ClientsTotalSum>
+			<Count-80211b>
+				<xsl:value-of select="dot11bAuthCount"/>
+			</Count-80211b>
 			<Ratio-80211b>
 				<xsl:value-of select="round(dot11bAuthCount div $CLIENTSUM * 100 * 100) div 100"/>
 			</Ratio-80211b>
+			<Count-80211g>
+				<xsl:value-of select="dot11gAuthCount"/>
+			</Count-80211g>
 			<Ratio-80211g>
 				<xsl:value-of select="round(dot11gAuthCount div $CLIENTSUM * 100 * 100) div 100"/>
 			</Ratio-80211g>
+			<Count-80211a>
+				<xsl:value-of select="dot11aAuthCount"/>
+			</Count-80211a>
 			<Ratio-80211a>
 				<xsl:value-of select="round(dot11aAuthCount div $CLIENTSUM * 100 * 100) div 100"/>
 			</Ratio-80211a>
+			<Count-80211n24>
+				<xsl:value-of select="dot11n2_4AuthCount"/>
+			</Count-80211n24>
 			<Ratio-80211n24>
 				<xsl:value-of select="round(dot11n2_4AuthCount div $CLIENTSUM * 100 *100 ) div 100"/>
 			</Ratio-80211n24>
+			<Count-80211n5>
+				<xsl:value-of select="dot11n5AuthCount"/>
+			</Count-80211n5>
 			<Ratio-80211n5>
 				<xsl:value-of select="round(dot11n5AuthCount div $CLIENTSUM * 100 *100) div 100"/>
 			</Ratio-80211n5>
+			<Count-80211ac>
+				<xsl:value-of select="dot11acAuthCount"/>
+			</Count-80211ac>
 			<Ratio-80211ac>
 				<xsl:value-of select="round(dot11acAuthCount div $CLIENTSUM * 100 * 100) div 100"/>
 			</Ratio-80211ac>
