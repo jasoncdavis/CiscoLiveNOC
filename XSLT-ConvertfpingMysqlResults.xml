@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!DOCTYPE xsl:stylesheet PUBLIC "Unofficial XSLT 1.0 DTD" "http://www.w3.org/1999/11/xslt10.dtd">
+<!-- XSLT-ConvertfpingMysqlResults.xml
+     Converts fping data from Mysql that was converted into XML into HTML table data
+-->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="html" indent="yes"/>
+
+	<xsl:variable name="fqdn" select="'.cisco.com'"/>
+	<xsl:template match="/root">
+		<table border="1">
+			<xsl:apply-templates select="object"/>
+		</table>
+	</xsl:template>
+	<xsl:template match="object[position() mod 20 = 1]">
+		<tr>
+			<xsl:apply-templates mode="proc" select=".|following-sibling::object[not(position() &gt; 20 - 1)]"/>
+		</tr>
+	</xsl:template>
+	<xsl:template match="object" mode="proc">
+		<xsl:choose>
+			<xsl:when test="ReachablePct = 0">
+				<td bgcolor="red">
+					<font color="white">
+						<xsl:variable name="DNAME" select="Hostname"/>
+						<xsl:choose>
+							<xsl:when test="contains($DNAME, $fqdn)">
+								<xsl:value-of select="substring-before($DNAME, $fqdn)"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="$DNAME"/>
+							</xsl:otherwise>
+						</xsl:choose>
+						<br/>
+						<xsl:value-of select="IPAddress"/>
+						<br/>
+						<xsl:value-of select="AvgLatency"/> ms
+						<br/>
+						<xsl:value-of select="ReachablePct"/> % Avail
+					</font>
+				</td>
+			</xsl:when>
+			<xsl:when test="ReachablePct &gt; 0 and ReachablePct &lt; 100">
+				<td bgcolor="orange">
+					<font color="black">
+						<xsl:variable name="DNAME" select="Hostname"/>
+						<xsl:choose>
+							<xsl:when test="contains($DNAME, $fqdn)">
+								<xsl:value-of select="substring-before($DNAME, $fqdn)"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="$DNAME"/>
+							</xsl:otherwise>
+						</xsl:choose>
+						<br/>
+						<xsl:value-of select="IPAddress"/>
+						<br/>
+						<xsl:value-of select="AvgLatency"/> ms
+						<br/>
+						<xsl:value-of select="ReachablePct"/> % Avail
+					</font>
+				</td>
+			</xsl:when>
+			<xsl:when test="ReachablePct = 100 and AvgLatency &gt; 10">
+				<td bgcolor="yellow">
+					<font color="black">
+						<xsl:variable name="DNAME" select="Hostname"/>
+						<xsl:choose>
+							<xsl:when test="contains($DNAME, $fqdn)">
+								<xsl:value-of select="substring-before($DNAME, $fqdn)"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="$DNAME"/>
+							</xsl:otherwise>
+						</xsl:choose>
+						<br/>
+						<xsl:value-of select="IPAddress"/>
+						<br/>
+						<xsl:value-of select="AvgLatency"/> ms
+						<br/>
+						<xsl:value-of select="ReachablePct"/> % Avail
+					</font>
+				</td>
+			</xsl:when>
+			<xsl:otherwise>
+				<td bgcolor="lime">
+					<font color="black">
+						<xsl:variable name="DNAME" select="Hostname"/>
+						<xsl:choose>
+							<xsl:when test="contains($DNAME, $fqdn)">
+								<xsl:value-of select="substring-before($DNAME, $fqdn)"/>
+							</xsl:when>
+							<xsl:otherwise>
+								<xsl:value-of select="$DNAME"/>
+							</xsl:otherwise>
+						</xsl:choose>
+						<br/>
+						<xsl:value-of select="IPAddress"/>
+						<br/>
+						<xsl:value-of select="AvgLatency"/> ms
+						<br/>
+						<xsl:value-of select="ReachablePct"/> % Avail
+					</font>
+				</td>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+	<xsl:template match="object[not(position() mod 20 = 1)]"/>
+</xsl:stylesheet>
