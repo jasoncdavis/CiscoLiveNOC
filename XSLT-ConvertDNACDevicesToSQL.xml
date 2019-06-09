@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- XSLT-ConvertDNACDevicesToSQL.xml
+     v1 jadavis     2019-0530
+     Initial Development - Purpose is to take Cisco DNA Center JSON converted XML data and turn into
+     usable SQL for database insertion
+     -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="text"/>
+	<xsl:template match="/root">
+		<xsl:apply-templates select="object"/>
+	</xsl:template>
+	<xsl:template match="object">INSERT INTO PINGRESULTS (Hostname, IPAddress, Source) VALUES ('<xsl:value-of select="hostname"/>', '<xsl:value-of select="IPAddress"/>', 'DNAC') ON DUPLICATE KEY UPDATE Hostname = '<xsl:value-of select="hostname"/>', Source = 'DNAC';
+	</xsl:template>
+</xsl:stylesheet>
