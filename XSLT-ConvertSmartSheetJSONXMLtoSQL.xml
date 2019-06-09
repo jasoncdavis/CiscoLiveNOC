@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- XSLT-ConvertSmartSheetJSONXMLtoSQL.xml
+     v1 jadavis     2019-0530
+     Initial Development - Purpose is to take SmartSheet JSON converted XML data and turn into
+     usable XML for later database insertion
+     v2 jadavis     2019-0601
+     Added Contact information
+     -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="text"/>
+	<xsl:template match="/doc">
+		<xsl:apply-templates select="rows"/>
+	</xsl:template>
+	<xsl:template match="rows">INSERT INTO PINGRESULTS (Hostname, IPAddress, Contact, Source) VALUES ('<xsl:value-of select="cells[2]/value"/>', '<xsl:value-of select="cells[1]/value"/>', '<xsl:value-of select="cells[3]/value"/>', 'SmartSheet') ON DUPLICATE KEY UPDATE Hostname = '<xsl:value-of select="cells[2]/value"/>', Contact = '<xsl:value-of select="cells[3]/value"/>', Source = 'SmartSheet';
+	</xsl:template>
+</xsl:stylesheet>
