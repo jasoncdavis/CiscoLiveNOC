@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- XSLT-ConvertfpingResultsToSQL.xml
+     v1 jadavis     2019-0601
+     Initial Development - Purpose is to take fping JSON result data, converted to XML, then turn into
+     usable SQL for database insertion
+     -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+	<xsl:output method="text"/>
+	<xsl:template match="/DocumentRoot">
+			<xsl:apply-templates select="results"/>
+	</xsl:template>
+	<xsl:template match="results">UPDATE PINGRESULTS SET ReachablePct = <xsl:value-of select="100 - losspct"/>, AvgLatency = <xsl:choose>
+            <xsl:when test="avgrtt"><xsl:value-of select="avgrtt"/></xsl:when>
+            <xsl:otherwise>9999</xsl:otherwise>
+        </xsl:choose> WHERE IPAddress = '<xsl:value-of select="host"/>';
+	</xsl:template>
+</xsl:stylesheet>
